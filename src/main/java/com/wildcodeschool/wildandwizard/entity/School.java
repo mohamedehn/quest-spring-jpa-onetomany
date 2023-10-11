@@ -1,9 +1,7 @@
 package com.wildcodeschool.wildandwizard.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class School {
@@ -14,6 +12,13 @@ public class School {
     private String name;
     private Long capacity;
     private String country;
+
+    //permet de faire la jointure grâce à JPA entre Wizard et School
+    //LAZY car les relations ne sont chargées qu'au besoin (+rapide).
+    //Refresh : met à jour l'entité quand une relation est modifiée ou supprimée.
+    //Optional : valeur false, il ne sera pas possible d'y insérer une valeur nulle.
+    @OneToMany(mappedBy = "school")
+    private List<Wizard> wizards;
 
     public School() {
     }
@@ -48,5 +53,10 @@ public class School {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    //getter ajouté ci-dessous afin de récupérer la list des wizards
+    public List<Wizard> getWizards(){
+        return wizards;
     }
 }

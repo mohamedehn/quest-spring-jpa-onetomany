@@ -1,9 +1,8 @@
 package com.wildcodeschool.wildandwizard.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.wildcodeschool.wildandwizard.repository.SchoolRepository;
+
+import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
@@ -18,6 +17,14 @@ public class Wizard {
     private String birthPlace;
     private String biography;
     private boolean muggle;
+
+    //permet de faire la jointure grâce à JPA entre Wizard et School
+    //LAZY car les relations ne sont chargées qu'au besoin (+rapide).
+    //Refresh : met à jour l'entité quand une relation est modifiée ou supprimée.
+    //Optional : valeur false, il ne sera pas possible d'y insérer une valeur nulle.
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH, optional = false)
+    @JoinColumn(name = "school_id")
+    private School school;
 
     public Wizard() {
     }
@@ -77,4 +84,9 @@ public class Wizard {
     public void setMuggle(boolean muggle) {
         this.muggle = muggle;
     }
+
+    //setters rajouté ici
+    public void setSchool(School school){
+        this.school = school;
+    };
 }

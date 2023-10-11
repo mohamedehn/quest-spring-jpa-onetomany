@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `spring_jpa_onetomany` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE IF NOT EXISTS `spring_jpa_onetomany` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `spring_jpa_onetomany`;
 -- MySQL dump 10.13  Distrib 5.7.28, for Linux (x86_64)
 --
